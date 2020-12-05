@@ -4,9 +4,12 @@ import { ReactComponent as Logo } from "../../Assets/crown.svg";
 import { connect } from "react-redux";
 import { auth } from "../../firebase/firebase.data";
 
+import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
+
 import "./header.styles.scss";
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -28,14 +31,17 @@ const Header = ({ currentUser }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      {hidden ? null : <CartDropdown />}
     </div>
   );
 };
 
 //get data from store
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
+  currentUser,
+  hidden,
   //the user value will be value that is combined in root reducer i.e that handler i.e user: userReducer(in this case)
 });
 
