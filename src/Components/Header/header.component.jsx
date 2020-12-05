@@ -33,6 +33,7 @@ const Header = ({ currentUser }) => {
   );
 };
 
+//get data from store
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentUser,
   //the user value will be value that is combined in root reducer i.e that handler i.e user: userReducer(in this case)

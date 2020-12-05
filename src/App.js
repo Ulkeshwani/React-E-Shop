@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Homepage from "./Pages/Homepage/homepage.component";
 import ShopPage from "./Pages/Shop/shop.component";
@@ -29,8 +29,8 @@ class App extends React.Component {
           //setting current user to its properties
           setCurrentUser({
             currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
+              id: snapShot.id, //type
+              ...snapShot.data(), //payload
             },
           });
         });
@@ -51,16 +51,27 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={Homepage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signIn" component={SignInAndSignUp} />
-          <Route path="/contactUs" component={Contact} />
+          <Route
+            exact
+            path="/signIn"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+            }
+          />
+          <Route exact path="/contactUs" component={Contact} />
         </Switch>
       </div>
     );
   }
 }
+//to get the Data from store
+const mapStateToProps = ({ user }) => ({
+  setCurrentUser: user.currentUser,
+});
 
+//set data to store
 const mapDispatchToProp = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
-export default connect(null, mapDispatchToProp)(App);
+export default connect(mapStateToProps, mapDispatchToProp)(App);
