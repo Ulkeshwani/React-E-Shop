@@ -14,7 +14,6 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.data";
 import { setCurrentUser } from "./Redux/User/user.action";
 
 class App extends React.Component {
-  
   unSubcribeFromAuth = null;
 
   componentDidMount() {
