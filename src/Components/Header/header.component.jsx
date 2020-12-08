@@ -2,7 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../Assets/crown.svg";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
 import { auth } from "../../firebase/firebase.data";
+
+import { selectCurrentUser } from "../../Redux/User/user.selector";
+import { selectCartHidden } from "../../Redux/Cart/cart.selector";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
@@ -39,9 +44,9 @@ const Header = ({ currentUser, hidden }) => {
 };
 
 //get data from store
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  currentUser,
-  hidden,
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden,
   //the user value will be value that is combined in root reducer i.e that handler i.e user: userReducer(in this case)
 });
 

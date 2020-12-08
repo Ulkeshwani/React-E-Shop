@@ -11,6 +11,15 @@
     right: 0;
     z-index: 5;
 
+    .empty-message{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: auto;
+        margin-top: auto;
+        font-size: large;
+        font-weight: bold;
+    }
 
     .cart-items{
         height: 340px;
