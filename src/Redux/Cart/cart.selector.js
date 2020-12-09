@@ -1,4 +1,3 @@
-import { CakeTwoTone } from "@material-ui/icons";
 import { createSelector } from "reselect";
 
 const selectCart = (state) => state.cart;
