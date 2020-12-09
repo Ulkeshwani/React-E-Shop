@@ -5,7 +5,10 @@ import "./contact.styles.scss";
 const Contact = () => {
   return (
     <div className="container">
-      <h1>CONTACT US</h1>
+      <h3>
+        This Project is Build To Learn The differet Features And Concept of
+        ReactJS and JavaScript
+      </h3>
     </div>
   );
 };
